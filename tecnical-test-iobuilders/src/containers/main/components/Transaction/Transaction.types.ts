@@ -5,4 +5,5 @@ export interface TransactionComponentProps {
   origin: string;
   amount: number;
   date: any;
+  type: string;
 }

@@ -5,15 +5,14 @@ import {
   FormLabel,
   Input,
   InputGroup,
-  HStack,
   InputRightElement,
   Stack,
   Button,
   Heading,
   Text,
   useColorModeValue,
+  Link,
 } from "@chakra-ui/react";
-import { Link as RouteLink } from "react-router-dom";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import useLogic from "./SignUp.logic";
 import React from "react";
@@ -34,11 +33,9 @@ export default function SignUpComponent() {
       justify={"center"}
       bg={useColorModeValue("gray.50", "gray.800")}
     >
-      <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
+      <Stack minW={"75vw"} spacing={8} mx={"50"} maxW={"lg"} py={12} px={6}>
         <Stack align={"center"}>
-          <Heading fontSize={"4xl"} textAlign={"center"}>
-            Sign up
-          </Heading>
+          <Heading fontSize={"4xl"}>Sign up</Heading>
         </Stack>
         <Box
           rounded={"lg"}
@@ -47,20 +44,6 @@ export default function SignUpComponent() {
           p={8}
         >
           <Stack spacing={4}>
-            <HStack>
-              <Box>
-                <FormControl id="firstName">
-                  <FormLabel>First Name</FormLabel>
-                  <Input type="text" />
-                </FormControl>
-              </Box>
-              <Box>
-                <FormControl id="lastName">
-                  <FormLabel>Last Name</FormLabel>
-                  <Input type="text" />
-                </FormControl>
-              </Box>
-            </HStack>
             <FormControl id="email">
               <FormLabel>Email address</FormLabel>
               <Input onChange={onEmailChange} type="email" />
@@ -84,27 +67,25 @@ export default function SignUpComponent() {
                 </InputRightElement>
               </InputGroup>
             </FormControl>
-            <Stack spacing={10} pt={2}>
+            <Stack spacing={10}>
               <Button
                 onClick={signUp}
-                loadingText="Submitting"
-                size="lg"
                 bg={"blue.400"}
                 color={"white"}
                 _hover={{
                   bg: "blue.500",
                 }}
               >
-                Sign up
+                Sign in
               </Button>
-            </Stack>
-            <Stack pt={6}>
-              <Text align={"center"}>
-                Already a user?{" "}
-                <RouteLink to={"/sign-in"} color={"blue.400"}>
-                  Sign In
-                </RouteLink>
-              </Text>
+              <Stack pt={6}>
+                <Text align={"center"}>
+                  Already a user?{" "}
+                  <Link href={"/sign-in"} color={"blue.400"}>
+                    Sign In
+                  </Link>
+                </Text>
+              </Stack>
             </Stack>
           </Stack>
         </Box>

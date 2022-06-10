@@ -24,7 +24,6 @@ const AppContextProvider: React.FC<AppContextProviderProps> = ({
     return new Promise(async (resolve, reject) => {
       try {
         console.log("user", user);
-
         const q1 = query(
           collection(db, "transactions"),
           where("origin", "==", user)
@@ -40,6 +39,19 @@ const AppContextProvider: React.FC<AppContextProviderProps> = ({
           const data1 = values[0].docs.map((doc) => doc.data());
           const data2 = values[1].docs.map((doc) => doc.data());
           const data = [...data1, ...data2];
+          data
+            .sort((a, b) => {
+              return a.date.seconds - b.date.seconds;
+            })
+            .reverse();
+          console.log("data", data);
+
+          data.forEach((transaction, index) => {
+            let type: "increase" | "decrease" =
+              user === transaction.destinatary ? "increase" : "decrease";
+            data[index].type = type;
+          });
+
           setTransactions(data);
           resolve(data);
         });
